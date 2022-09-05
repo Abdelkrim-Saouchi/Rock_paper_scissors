@@ -94,7 +94,12 @@ for (let i = 0; i < 5; i++) {
     console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
 }
 /* print the winner on the console. */
-
+if (playerWins > computerWins) {
+    console.log("Player wins!");
+}
+else {
+    console.log("computer wins!");
+}
 
 /* game rules */
 /* rock > scissor
