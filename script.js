@@ -1,5 +1,7 @@
 /* create variable "playerSelection" to store player choice */
+let playerSelection;
 /* create variable "computerSelection" to store computer choice */
+let computerSelection;
 /* create function "getComputerChoice" to store it in variable "computerSelection" */
         /* make random number between 1 and 3 */
         /* if 1 return scissor */
