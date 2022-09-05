@@ -7,7 +7,19 @@ let computerSelection;
         /* if 1 return scissor */
         /* if 2 return rock */
         /* if 3 return paper */
-        /* if random number not between 1 and 3 => run random again until desired number. */
+function getComputerChoice() {
+    let random = Math.floor(Math.random() * (4-1)) + 1;
+    if (random === 1) {
+        return "scissor";
+    }
+    else if (random === 2) {
+        return "rock";
+    }
+    else {
+        return "paper";
+    }
+}
+computerSelection = getComputerChoice();
 /* ask user to enter choice and store it in "playerChoice" */
 /* create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection and
    and returns the winner. */
