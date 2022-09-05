@@ -44,6 +44,9 @@ console.log(playerSelection);
             if other inputs
                 return; */
 function playRound(playerSelection, computerSelection) {
+    if (playerSelection === null) {
+        return;
+    }
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
     if (playerChoice === "rock" && computerChoice === "scissor") {
@@ -71,6 +74,7 @@ function playRound(playerSelection, computerSelection) {
 
 console.log(playRound(playerSelection, computerSelection));
 /* make game plays 5 rounds */
+
 /* print the winner on the console. */
 
 
