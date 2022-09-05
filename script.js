@@ -20,9 +20,10 @@ function getComputerChoice() {
     }
 }
 computerSelection = getComputerChoice();
+console.log(computerSelection);
 /* ask user to enter choice and store it in "playerChoice" */
 playerSelection = prompt("Choose Rock Paper or Scissor");
-
+console.log(playerSelection);
 /* create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection and
    and returns the winner. */
         /* force parameters to lower case */
@@ -41,7 +42,34 @@ playerSelection = prompt("Choose Rock Paper or Scissor");
             if tie
                 return tie.
             if other inputs
-                return;
+                return; */
+function playRound(playerSelection, computerSelection) {
+    let playerChoice = playerSelection.toLowerCase();
+    let computerChoice = computerSelection.toLowerCase();
+    if (playerChoice === "rock" && computerChoice === "scissor") {
+        return "You won! Rock beats Scissor";
+    }
+    else if (playerChoice === "scissor" && computerChoice === "rock") {
+        return "You lose! Rock beats Scissor";
+    }
+    else if (playerChoice === "scissor" && computerChoice === "paper") {
+        return "You won! Scissor beats Paper";
+    }
+    else if (playerChoice === "paper" && computerChoice === "scissor") {
+        return "You lose! Scissor beats Paper";
+    }
+    else if (playerChoice === "paper" && computerChoice === "rock") {
+        return "You won! Paper beats rock";
+    }
+    else if (playerChoice === "rock" && computerChoice === "paper") {
+        return "You lose! Paper beats rock";
+    }
+    else {
+        return;
+    }
+}
+
+console.log(playRound(playerSelection, computerSelection));
 /* make game plays 5 rounds */
 /* print the winner on the console. */
 
