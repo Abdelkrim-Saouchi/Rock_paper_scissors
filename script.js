@@ -74,7 +74,25 @@ function playRound(playerSelection, computerSelection) {
 
 console.log(playRound(playerSelection, computerSelection));
 /* make game plays 5 rounds */
+let roundResult;
+let playerWins = 0;
+let computerWins = 0;
 
+for (let i = 0; i < 5; i++) {
+    if (playRound() === undefined) {
+        playerSelection = prompt("Choose Rock Paper or Scissor");
+    }
+    roundResult = playRound(playerSelection, computerSelection);
+    if (roundResult.slice(0, 6) === "You won") {
+        console.log(roundResult);
+        playerWins++;
+    }
+    else if (roundResult.slice(0, 7) === "You lose") {
+        console.log(roundResult);
+        computerWins++;
+    }
+    console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
+}
 /* print the winner on the console. */
 
 
