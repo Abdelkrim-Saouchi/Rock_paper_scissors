@@ -67,6 +67,12 @@ function playRound(playerSelection, computerSelection) {
     else if (playerChoice === "rock" && computerChoice === "paper") {
         return "You lose! Paper beats rock";
     }
+    else if (playerChoice === computerChoice) {
+        playerSelection = prompt("Choose Rock Paper or Scissor");
+        computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+
+    }
     else {
         return;
     }
