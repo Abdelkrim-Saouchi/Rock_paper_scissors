@@ -21,6 +21,8 @@ function getComputerChoice() {
 }
 computerSelection = getComputerChoice();
 /* ask user to enter choice and store it in "playerChoice" */
+playerSelection = prompt("Choose Rock Paper or Scissor");
+
 /* create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection and
    and returns the winner. */
         /* force parameters to lower case */
@@ -38,6 +40,8 @@ computerSelection = getComputerChoice();
                 return you loose.
             if tie
                 return tie.
+            if other inputs
+                return;
 /* make game plays 5 rounds */
 /* print the winner on the console. */
 
