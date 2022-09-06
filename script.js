@@ -91,28 +91,34 @@ let roundResult;
 let playerWins = 0;
 let computerWins = 0;
 
-for (let i = 0; i < 5; i++) {
-    /* computer choose option */
-    computerSelection = getComputerChoice();
+function game() {
 
-    /* ask user to enter choice and store it in "playerChoice" */
-    playerSelection = prompt("Choose Rock Paper or Scissor");
-    
-    roundResult = playRound(playerSelection, computerSelection);
+    for (let i = 0; i < 5; i++) {
+            /* computer choose option */
+            computerSelection = getComputerChoice();
 
-    if (roundResult.slice(0, 7) === "You won") {
-        console.log(roundResult);
-        playerWins++;
-    }
-    else if (roundResult.slice(0, 8) === "You lose") {
-        console.log(roundResult);
-        computerWins++;
-    }
-    else {
-        console.log("something goes wrong!");
-    }
-    console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
-}
+            /* ask user to enter choice and store it in "playerChoice" */
+            playerSelection = prompt("Choose Rock Paper or Scissor");
+
+            roundResult = playRound(playerSelection, computerSelection);
+
+            if (roundResult.slice(0, 7) === "You won") {
+                console.log(roundResult);
+                playerWins++;
+            }
+            else if (roundResult.slice(0, 8) === "You lose") {
+                console.log(roundResult);
+                computerWins++;
+            }
+            else {
+                console.log("something goes wrong!");
+            }
+            console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
+    }   
+}   
+
+/*run game */
+game();
 
 /* print the winner on the console. */
 if (playerWins > computerWins) {
