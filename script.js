@@ -1,3 +1,8 @@
+/* game rules */
+/* rock > scissor
+   scissor > paper
+   paper > rock */
+
 /* create variable "playerSelection" to store player choice */
 let playerSelection;
 /* create variable "computerSelection" to store computer choice */
@@ -19,11 +24,7 @@ function getComputerChoice() {
         return "paper";
     }
 }
-computerSelection = getComputerChoice();
-console.log(computerSelection);
-/* ask user to enter choice and store it in "playerChoice" */
-playerSelection = prompt("Choose Rock Paper or Scissor");
-console.log(playerSelection);
+
 /* create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection and
    and returns the winner. */
         /* force parameters to lower case */
@@ -45,10 +46,14 @@ console.log(playerSelection);
                 return; */
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === null) {
-        return;
+        computerSelection = getComputerChoice();
+        playerSelection = prompt("Choose Rock Paper or Scissor");
+        playRound(playerSelection, computerSelection);
     }
+
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
+
     if (playerChoice === "rock" && computerChoice === "scissor") {
         return "You won! Rock beats Scissor";
     }
@@ -68,34 +73,44 @@ function playRound(playerSelection, computerSelection) {
         return "You lose! Paper beats rock";
     }
     else if (playerChoice === computerChoice) {
-        playerSelection = prompt("Choose Rock Paper or Scissor");
         computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
+        playerSelection = prompt("Choose Rock Paper or Scissor");
+        return playRound(playerSelection, computerSelection);
 
     }
     else {
-        return;
+        computerSelection = getComputerChoice();
+        playerSelection = prompt("Choose Rock Paper or Scissor");
+        return playRound(playerSelection, computerSelection);
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+
 /* make game plays 5 rounds */
 let roundResult;
 let playerWins = 0;
 let computerWins = 0;
 
 for (let i = 0; i < 5; i++) {
-    if (playRound() === undefined) {
-        playerSelection = prompt("Choose Rock Paper or Scissor");
-    }
+    /* computer choose option */
+    computerSelection = getComputerChoice();
+    console.log(`computer choice: ${computerSelection}`);
+    /* ask user to enter choice and store it in "playerChoice" */
+    playerSelection = prompt("Choose Rock Paper or Scissor");
+    console.log(`player choice: ${playerSelection}`);
+    
     roundResult = playRound(playerSelection, computerSelection);
-    if (roundResult.slice(0, 6) === "You won") {
+    console.log(`round result: ${roundResult}`);
+    if (roundResult.slice(0, 7) === "You won") {
         console.log(roundResult);
         playerWins++;
     }
-    else if (roundResult.slice(0, 7) === "You lose") {
+    else if (roundResult.slice(0, 8) === "You lose") {
         console.log(roundResult);
         computerWins++;
+    }
+    else {
+        console.log("something goes wrong!");
     }
     console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
 }
@@ -106,8 +121,3 @@ if (playerWins > computerWins) {
 else {
     console.log("computer wins!");
 }
-
-/* game rules */
-/* rock > scissor
-   scissor > paper
-   paper > rock */
