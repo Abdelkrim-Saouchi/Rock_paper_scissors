@@ -48,7 +48,7 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === null) {
         computerSelection = getComputerChoice();
         playerSelection = prompt("Choose Rock Paper or Scissor");
-        playRound(playerSelection, computerSelection);
+        return playRound(playerSelection, computerSelection);
     }
 
     let playerChoice = playerSelection.toLowerCase();
