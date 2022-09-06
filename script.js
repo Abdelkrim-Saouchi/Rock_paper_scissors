@@ -94,13 +94,12 @@ let computerWins = 0;
 for (let i = 0; i < 5; i++) {
     /* computer choose option */
     computerSelection = getComputerChoice();
-    console.log(`computer choice: ${computerSelection}`);
+
     /* ask user to enter choice and store it in "playerChoice" */
     playerSelection = prompt("Choose Rock Paper or Scissor");
-    console.log(`player choice: ${playerSelection}`);
     
     roundResult = playRound(playerSelection, computerSelection);
-    console.log(`round result: ${roundResult}`);
+
     if (roundResult.slice(0, 7) === "You won") {
         console.log(roundResult);
         playerWins++;
@@ -114,6 +113,7 @@ for (let i = 0; i < 5; i++) {
     }
     console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
 }
+
 /* print the winner on the console. */
 if (playerWins > computerWins) {
     console.log("Player wins!");
