@@ -87,11 +87,11 @@ function playRound(playerSelection, computerSelection) {
 
 
 /* make game plays 5 rounds */
-let roundResult;
-let playerWins = 0;
-let computerWins = 0;
 
 function game() {
+    let roundResult;
+    let playerWins = 0;
+    let computerWins = 0;
 
     for (let i = 0; i < 5; i++) {
             /* computer choose option */
@@ -114,16 +114,15 @@ function game() {
                 console.log("something goes wrong!");
             }
             console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
+    }
+    /* print the winner on the console. */
+    if (playerWins > computerWins) {
+        console.log("Player wins!");
+    }
+    else {
+        console.log("computer wins!");
     }   
 }   
 
 /*run game */
 game();
-
-/* print the winner on the console. */
-if (playerWins > computerWins) {
-    console.log("Player wins!");
-}
-else {
-    console.log("computer wins!");
-}
