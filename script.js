@@ -89,39 +89,39 @@ function playRound(playerSelection, computerSelection) {
 /* make game plays 5 rounds */
 
 function game() {
-    let roundResult;
-    let playerWins = 0;
-    let computerWins = 0;
+    // let roundResult;
+    // let playerWins = 0;
+    // let computerWins = 0;
 
-    for (let i = 0; i < 5; i++) {
-            /* computer choose option */
-            computerSelection = getComputerChoice();
+    // for (let i = 0; i < 5; i++) {
+    //         /* computer choose option */
+    //         computerSelection = getComputerChoice();
 
-            /* ask user to enter choice and store it in "playerChoice" */
-            playerSelection = prompt("Choose Rock Paper or Scissor");
+    //         /* ask user to enter choice and store it in "playerChoice" */
+    //         playerSelection = prompt("Choose Rock Paper or Scissor");
 
-            roundResult = playRound(playerSelection, computerSelection);
+    //         roundResult = playRound(playerSelection, computerSelection);
 
-            if (roundResult.slice(0, 7) === "You won") {
-                console.log(roundResult);
-                playerWins++;
-            }
-            else if (roundResult.slice(0, 8) === "You lose") {
-                console.log(roundResult);
-                computerWins++;
-            }
-            else {
-                console.log("something goes wrong!");
-            }
-            console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
-    }
-    /* print the winner on the console. */
-    if (playerWins > computerWins) {
-        console.log("Player wins!");
-    }
-    else {
-        console.log("computer wins!");
-    }   
+    //         if (roundResult.slice(0, 7) === "You won") {
+    //             console.log(roundResult);
+    //             playerWins++;
+    //         }
+    //         else if (roundResult.slice(0, 8) === "You lose") {
+    //             console.log(roundResult);
+    //             computerWins++;
+    //         }
+    //         else {
+    //             console.log("something goes wrong!");
+    //         }
+    //         console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
+    // }
+    // /* print the winner on the console. */
+    // if (playerWins > computerWins) {
+    //     console.log("Player wins!");
+    // }
+    // else {
+    //     console.log("computer wins!");
+    // }   
 }   
 
 /*run game */
