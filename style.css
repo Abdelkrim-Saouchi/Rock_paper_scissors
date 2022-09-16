@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, .intro, #Result {
+    text-align: center;
+}
+
+div {
+    width: 400px;
+    margin: 0 auto;
+}
