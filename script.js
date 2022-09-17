@@ -82,28 +82,7 @@ function game() {
     let playerWins = 0;
     let computerWins = 0;
 
-    // for (let i = 0; i < 5; i++) {
-    //         /* computer choose option */
-    //         computerSelection = getComputerChoice();
-
-    //         /* ask user to enter choice and store it in "playerChoice" */
-    //         playerSelection = prompt("Choose Rock Paper or Scissor");
-
-    //         roundResult = playRound(playerSelection, computerSelection);
-
-    //         if (roundResult.slice(0, 7) === "You won") {
-    //             console.log(roundResult);
-    //             playerWins++;
-    //         }
-    //         else if (roundResult.slice(0, 8) === "You lose") {
-    //             console.log(roundResult);
-    //             computerWins++;
-    //         }
-    //         else {
-    //             console.log("something goes wrong!");
-    //         }
-    //         console.log(`player: ${playerWins} wins | computer: ${computerWins} wins`);
-    // }
+    
     // /* print the winner on the console. */
     // if (playerWins > computerWins) {
     //     console.log("Player wins!");
@@ -113,16 +92,36 @@ function game() {
     // } 
     
     const buttons = document.querySelectorAll("button");
+    const playerScore = document.querySelector(".scores p:first-child");
+    const computerScore = document.querySelector(".scores p:last-child");
+    const result = document.querySelector("#Result");
+    
     buttons.forEach(button => {
         button.addEventListener("click", function (e) {
             computerSelection = getComputerChoice();
+            console.log(computerSelection);
             playerSelection = e.target.textContent;
+            console.log(playerSelection);
             roundResult = playRound(playerSelection, computerSelection);
             console.log(roundResult);
+            
+            if (roundResult.slice(0, 7) === "You won") {
+                playerWins++;
+                playerScore.textContent = `Player score: ${playerWins}`;
+                result.textContent = roundResult;
+            }
+            else if (roundResult.slice(0, 8) === "You lose") {
+                computerWins++;
+                computerScore.textContent = `Computer score: ${computerWins}`;
+                result.textContent = roundResult;
+            }
+            else {
+                result.textContent = roundResult;
+            }
+    });
+    });
+}
 
-        })
-    })
-}   
 
 /*run game */
 game();
