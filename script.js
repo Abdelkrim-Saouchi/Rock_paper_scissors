@@ -45,11 +45,6 @@ function getComputerChoice() {
             if other inputs
                 return; */
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === null) {
-        computerSelection = getComputerChoice();
-        playerSelection = prompt("Choose Rock Paper or Scissor");
-        return playRound(playerSelection, computerSelection);
-    }
 
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
@@ -72,26 +67,20 @@ function playRound(playerSelection, computerSelection) {
     else if (playerChoice === "rock" && computerChoice === "paper") {
         return "You lose! Paper beats rock";
     }
-    else if (playerChoice === computerChoice) {
-        computerSelection = getComputerChoice();
-        playerSelection = prompt("Choose Rock Paper or Scissor");
-        return playRound(playerSelection, computerSelection);
+    else {
+        return `It's a tie! You both chose ${playerChoice}`;
 
     }
-    else {
-        computerSelection = getComputerChoice();
-        playerSelection = prompt("Choose Rock Paper or Scissor");
-        return playRound(playerSelection, computerSelection);
-    }
+
 }
 
 
 /* make game plays 5 rounds */
 
 function game() {
-    // let roundResult;
-    // let playerWins = 0;
-    // let computerWins = 0;
+    let roundResult;
+    let playerWins = 0;
+    let computerWins = 0;
 
     // for (let i = 0; i < 5; i++) {
     //         /* computer choose option */
@@ -121,7 +110,18 @@ function game() {
     // }
     // else {
     //     console.log("computer wins!");
-    // }   
+    // } 
+    
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", function (e) {
+            computerSelection = getComputerChoice();
+            playerSelection = e.target.textContent;
+            roundResult = playRound(playerSelection, computerSelection);
+            console.log(roundResult);
+
+        })
+    })
 }   
 
 /*run game */
