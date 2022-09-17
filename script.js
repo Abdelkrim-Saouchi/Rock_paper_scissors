@@ -86,6 +86,9 @@ function game() {
     const playerScore = document.querySelector(".scores p:first-child");
     const computerScore = document.querySelector(".scores p:last-child");
     const result = document.querySelector("#Result");
+    const body = document.querySelector("body");
+    const restartBtn = document.createElement("button");
+    restartBtn.textContent = "Restart";
     
     buttons.forEach(button => {
         button.addEventListener("click", function (e) {
@@ -121,10 +124,25 @@ function game() {
                     else {
                         result.textContent = "Computer wins!";
                     }
+                    body.appendChild(restartBtn);
+                    restartBtn.addEventListener("click", () =>{
+                        playerWins = 0;
+                        computerWins = 0;
+                        playerScore.textContent = "Player score: 0";
+                        computerScore.textContent = "Computer score: 0";
+                        result.textContent = "";
+                        for (let btn of buttons) {
+                            btn.disabled = false;
+                        }
+                        console.log(this);
+                        body.removeChild(restartBtn);
+                    });
                 }, 3000);
+            
             }
     });
     });
+
 
 }
 
