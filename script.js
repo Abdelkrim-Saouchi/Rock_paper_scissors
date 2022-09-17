@@ -81,15 +81,6 @@ function game() {
     let roundResult;
     let playerWins = 0;
     let computerWins = 0;
-
-    
-    // /* print the winner on the console. */
-    // if (playerWins > computerWins) {
-    //     console.log("Player wins!");
-    // }
-    // else {
-    //     console.log("computer wins!");
-    // } 
     
     const buttons = document.querySelectorAll("button");
     const playerScore = document.querySelector(".scores p:first-child");
@@ -118,8 +109,23 @@ function game() {
             else {
                 result.textContent = roundResult;
             }
+
+            if (playerWins + computerWins === 5) {
+                for (let btn of buttons) {
+                    btn.disabled = true;
+                }
+                setTimeout(()=>{
+                    if (playerWins > computerWins) {
+                        result.textContent = "Player wins!";
+                    }
+                    else {
+                        result.textContent = "Computer wins!";
+                    }
+                }, 3000);
+            }
     });
     });
+
 }
 
 
