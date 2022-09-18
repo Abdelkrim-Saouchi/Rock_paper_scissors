@@ -105,8 +105,8 @@ function game() {
                 roundNumber.textContent = `Round: ${rounds}`; // display current round number
             }
 
-            // if 5 round are played
-            if (playerWins + computerWins === 5) {
+            // if 5 points are reached by one of competitors
+            if (playerWins === 5 || computerWins === 5) {
                 for (let btn of buttons) { // disable choice buttons
                     btn.disabled = true;
                 }
