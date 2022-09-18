@@ -81,11 +81,13 @@ function game() {
     let roundResult;
     let playerWins = 0;
     let computerWins = 0;
+    let rounds = 0;
     
     const buttons = document.querySelectorAll("button");
     const playerScore = document.querySelector(".scores p:first-child");
     const computerScore = document.querySelector(".scores p:last-child");
     const result = document.querySelector("#Result");
+    const roundNumber = document.querySelector("#round");
     const body = document.querySelector("body");
     const restartBtn = document.createElement("button");
     restartBtn.textContent = "Restart";
@@ -98,19 +100,26 @@ function game() {
             console.log(playerSelection);
             roundResult = playRound(playerSelection, computerSelection);
             console.log(roundResult);
+
+            roundNumber.textContent = `Round: ${rounds}`;
             
             if (roundResult.slice(0, 7) === "You won") {
                 playerWins++;
+                rounds++;
                 playerScore.textContent = `Player score: ${playerWins}`;
                 result.textContent = roundResult;
+                roundNumber.textContent = `Round: ${rounds}`;
             }
             else if (roundResult.slice(0, 8) === "You lose") {
                 computerWins++;
+                rounds++;
                 computerScore.textContent = `Computer score: ${computerWins}`;
                 result.textContent = roundResult;
+                roundNumber.textContent = `Round: ${rounds}`;
             }
             else {
                 result.textContent = roundResult;
+                roundNumber.textContent = `Round: ${rounds}`;
             }
 
             if (playerWins + computerWins === 5) {
@@ -126,6 +135,8 @@ function game() {
                     }
                     body.appendChild(restartBtn);
                     restartBtn.addEventListener("click", () =>{
+                        roundNumber.textContent = "";
+                        rounds = 0;
                         playerWins = 0;
                         computerWins = 0;
                         playerScore.textContent = "Player score: 0";
