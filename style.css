@@ -1,17 +1,14 @@
-/*remove default margins and paddings*/
+/*general settings*/
 body {
     text-align: center;
 }
+
 * {
     margin: 0;
     padding: 0;
 }
 
 
-/* Center Elements */
-h1, .intro, #Result {
-    text-align: center;
-}
 
 div {
     max-width: 400px;
