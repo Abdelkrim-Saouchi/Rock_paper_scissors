@@ -1,19 +1,16 @@
-/* game rules */
+// Game rules 
 /* rock > scissor
    scissor > paper
    paper > rock */
 
-/* create variable "playerSelection" to store player choice */
+// create variable "playerSelection" to store player choice
 let playerSelection;
-/* create variable "computerSelection" to store computer choice */
+// create variable "computerSelection" to store computer choice
 let computerSelection;
-/* create function "getComputerChoice" to store it in variable "computerSelection" */
-        /* make random number between 1 and 3 */
-        /* if 1 return scissor */
-        /* if 2 return rock */
-        /* if 3 return paper */
+
+// create function "getComputerChoice" to to generate computerSelection
 function getComputerChoice() {
-    let random = Math.floor(Math.random() * (4-1)) + 1;
+    let random = Math.floor(Math.random() * (4-1)) + 1; //generate random between 1 and 3 inclusive
     if (random === 1) {
         return "scissor";
     }
@@ -25,28 +22,10 @@ function getComputerChoice() {
     }
 }
 
-/* create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection and
-   and returns the winner. */
-        /* force parameters to lower case */
-        /* if playerSelection == rock and computerSelection == scissor
-                return you won.
-            if playerSelection == scissor and computerSelection == rock
-                return you loose.
-            if playerSelection == scissor and computerSelection == paper
-                return you won.
-            if playerSelection == paper and computerSelection == scissor
-                return you loose.
-            if playerSelection == paper and computerSelection == rock
-                return you won.
-            if playerSelection == rock and computerSelection == paper
-                return you loose.
-            if tie
-                return tie.
-            if other inputs
-                return; */
+// create function "playRound" with two case-insensitive parameters: playerSelection, computerSelection
 function playRound(playerSelection, computerSelection) {
 
-    let playerChoice = playerSelection.toLowerCase();
+    let playerChoice = playerSelection.toLowerCase(); // force to lower case
     let computerChoice = computerSelection.toLowerCase();
 
     if (playerChoice === "rock" && computerChoice === "scissor") {
@@ -68,21 +47,21 @@ function playRound(playerSelection, computerSelection) {
         return "You lose! Paper beats rock";
     }
     else {
-        return `It's a tie! You both chose ${playerChoice}`;
+        return `It's a tie! You both chose ${playerChoice}`; // if playerChoice === computerChoice 
 
     }
 
 }
 
 
-/* make game plays 5 rounds */
-
+// function of play game to encapsulate variables inside function scope
 function game() {
-    let roundResult;
-    let playerWins = 0;
+    let roundResult; //to catch playRound() return value
+    let playerWins = 0; // to keep track player and computer scores
     let computerWins = 0;
-    let rounds = 0;
+    let rounds = 0; // to keep track of rounds number
     
+    // Select DOM for manipulation
     const buttons = document.querySelectorAll("button");
     const playerScore = document.querySelector(".scores p:first-child");
     const computerScore = document.querySelector(".scores p:last-child");
@@ -90,51 +69,61 @@ function game() {
     const roundNumber = document.querySelector("#round");
     const body = document.querySelector("body");
     const restartBtn = document.createElement("button");
-    restartBtn.textContent = "Restart";
+    restartBtn.textContent = "Restart"; // set button text
     
-    buttons.forEach(button => {
+    buttons.forEach(button => { // iterate through each button
         button.addEventListener("click", function (e) {
+            //get computer choice
             computerSelection = getComputerChoice();
-            console.log(computerSelection);
+            // get player choice
             playerSelection = e.target.textContent;
-            console.log(playerSelection);
+            // get one round result
             roundResult = playRound(playerSelection, computerSelection);
-            console.log(roundResult);
 
+            // set round display to current round number
             roundNumber.textContent = `Round: ${rounds}`;
             
+            // if player win
             if (roundResult.slice(0, 7) === "You won") {
-                playerWins++;
-                rounds++;
-                playerScore.textContent = `Player score: ${playerWins}`;
-                result.textContent = roundResult;
-                roundNumber.textContent = `Round: ${rounds}`;
+                playerWins++; // increment player score by 1
+                rounds++; // update round number
+                playerScore.textContent = `Player score: ${playerWins}`; //display current player score
+                result.textContent = roundResult; // display the round result
+                roundNumber.textContent = `Round: ${rounds}`; // display current round number
             }
+            // if computer wins
             else if (roundResult.slice(0, 8) === "You lose") {
-                computerWins++;
-                rounds++;
-                computerScore.textContent = `Computer score: ${computerWins}`;
-                result.textContent = roundResult;
-                roundNumber.textContent = `Round: ${rounds}`;
+                computerWins++; //increment computer score by 1
+                rounds++; // update round number
+                computerScore.textContent = `Computer score: ${computerWins}`; //display current computer score
+                result.textContent = roundResult; // display the round result
+                roundNumber.textContent = `Round: ${rounds}`; // display current round number
             }
+            // if it's a tie
             else {
-                result.textContent = roundResult;
-                roundNumber.textContent = `Round: ${rounds}`;
+                result.textContent = roundResult; // display round result
+                roundNumber.textContent = `Round: ${rounds}`; // display current round number
             }
 
+            // if 5 round are played
             if (playerWins + computerWins === 5) {
-                for (let btn of buttons) {
+                for (let btn of buttons) { // disable choice buttons
                     btn.disabled = true;
                 }
-                setTimeout(()=>{
+                setTimeout(()=> { // pause execution 3000 ms then execute the code below
+                    
+                    // display the final result
                     if (playerWins > computerWins) {
                         result.textContent = "Player wins!";
                     }
                     else {
                         result.textContent = "Computer wins!";
                     }
+
+                    // Add restart button to restart game
                     body.appendChild(restartBtn);
-                    restartBtn.addEventListener("click", () =>{
+                    restartBtn.addEventListener("click", () =>{ // if button clicked
+                        // reset game variables to initial values
                         roundNumber.textContent = "";
                         rounds = 0;
                         playerWins = 0;
@@ -142,10 +131,12 @@ function game() {
                         playerScore.textContent = "Player score: 0";
                         computerScore.textContent = "Computer score: 0";
                         result.textContent = "";
+
+                        // reenable choose buttons
                         for (let btn of buttons) {
                             btn.disabled = false;
                         }
-                        console.log(this);
+                        // remove restart button from the screen
                         body.removeChild(restartBtn);
                     });
                 }, 3000);
@@ -158,5 +149,5 @@ function game() {
 }
 
 
-/*run game */
+//run game //
 game();
